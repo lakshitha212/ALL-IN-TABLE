@@ -1,3 +1,7 @@
+
+/*! ALL-IN-TABLE v1.0 https://lakshitha212.github.io/ALL-IN-TABLE/
+ * fork from DataTables 1.10.0 ©2008-2014 SpryMedia Ltd - datatables.net/license
+ */
 (function(window, document, undefined) {
     (function(factory) {
         "use strict";
@@ -232,30 +236,30 @@
 
             var n = $('<div/>')
                     .css({
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                height: 1,
-                width: 1,
-                overflow: 'hidden'
-            })
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        height: 1,
+                        width: 1,
+                        overflow: 'hidden'
+                    })
                     .append(
-                    $('<div/>')
-                    .css({
-                position: 'absolute',
-                top: 1,
-                left: 1,
-                width: 100,
-                overflow: 'scroll'
-            })
-                    .append(
-                    $('<div class="test"/>')
-                    .css({
-                width: '100%',
-                height: 10
-            })
-                    )
-                    )
+                            $('<div/>')
+                            .css({
+                                position: 'absolute',
+                                top: 1,
+                                left: 1,
+                                width: 100,
+                                overflow: 'scroll'
+                            })
+                            .append(
+                                    $('<div class="test"/>')
+                                    .css({
+                                        width: '100%',
+                                        height: 10
+                                    })
+                                    )
+                            )
                     .appendTo('body');
 
             var test = n.find('.test');
@@ -1223,10 +1227,10 @@
 
                 anRows[ 0 ] = $('<tr/>', {'class': iStripes ? asStripeClasses[0] : ''})
                         .append($('<td />', {
-                    'valign': 'top',
-                    'colSpan': _fnVisbleColumns(oSettings),
-                    'class': oSettings.oClasses.sRowEmpty
-                }).html(sZero))[0];
+                            'valign': 'top',
+                            'colSpan': _fnVisbleColumns(oSettings),
+                            'class': oSettings.oClasses.sRowEmpty
+                        }).html(sZero))[0];
             }
             _fnCallbackFire(oSettings, 'aoHeaderCallback', 'header', [$(oSettings.nTHead).children('tr')[0],
                 _fnGetDataMaster(oSettings), iDisplayStart, iDisplayEnd, aiDisplay]);
@@ -1744,16 +1748,16 @@
             var jqFilter = $('input[type="search"]', filter)
                     .val(previousSearch.sSearch.replace('"', '&quot;'))
                     .bind(
-                    'keyup.DT search.DT input.DT paste.DT cut.DT',
-                    _fnDataSource(settings) === 'ssp' ?
-                    _fnThrottle(searchFn, 400) :
-                    searchFn
-                    )
+                            'keyup.DT search.DT input.DT paste.DT cut.DT',
+                            _fnDataSource(settings) === 'ssp' ?
+                            _fnThrottle(searchFn, 400) :
+                            searchFn
+                            )
                     .bind('keypress.DT', function(e) {
-                if (e.keyCode == 13) {
-                    return false;
-                }
-            })
+                        if (e.keyCode == 13) {
+                            return false;
+                        }
+                    })
                     .attr('aria-controls', tableId);
             $(settings.nTable).on('filter.DT', function() {
                 try {
@@ -1943,9 +1947,9 @@
                     tid = settings.sTableId,
                     nodes = settings.aanFeatures.i,
                     n = $('<div/>', {
-                'class': settings.oClasses.sInfo,
-                'id': !nodes ? tid + '_info' : null
-            });
+                        'class': settings.oClasses.sInfo,
+                        'id': !nodes ? tid + '_info' : null
+                    });
 
             if (!nodes) {
                 settings.aoDrawCallback.push({
@@ -2117,9 +2121,9 @@
             select
                     .val(settings._iDisplayLength)
                     .bind('change.DT', function(e) {
-                _fnLengthChange(settings, $(this).val());
-                _fnDraw(settings);
-            });
+                        _fnLengthChange(settings, $(this).val());
+                        _fnDraw(settings);
+                    });
             $(settings.nTable).bind('length', function(e, s, len) {
                 select.val(len);
             });
@@ -2133,8 +2137,8 @@
                     plugin = DataTable.ext.pager[ type ],
                     modern = typeof plugin === 'function',
                     redraw = function(settings) {
-                _fnDraw(settings);
-            },
+                        _fnDraw(settings);
+                    },
                     node = $('<div/>').addClass(settings.oClasses.sPaging + type)[0],
                     features = settings.aanFeatures;
 
@@ -2284,59 +2288,59 @@
 
             var scroller = $(_div, {'class': classes.sScrollWrapper})
                     .append(
-                    $(_div, {'class': classes.sScrollHead})
-                    .css({
-                overflow: 'hidden',
-                position: 'relative',
-                border: 0,
-                width: scrollX ? size(scrollX) : '100%'
-            })
+                            $(_div, {'class': classes.sScrollHead})
+                            .css({
+                                overflow: 'hidden',
+                                position: 'relative',
+                                border: 0,
+                                width: scrollX ? size(scrollX) : '100%'
+                            })
+                            .append(
+                                    $(_div, {'class': classes.sScrollHeadInner})
+                                    .css({
+                                        'box-sizing': 'content-box',
+                                        width: scroll.sXInner || '100%'
+                                    })
+                                    .append(
+                                            headerClone
+                                            .removeAttr('id')
+                                            .css('margin-left', 0)
+                                            .append(
+                                                    table.children('thead')
+                                                    )
+                                            )
+                                    )
+                            .append(captionSide === 'top' ? caption : null)
+                            )
                     .append(
-                    $(_div, {'class': classes.sScrollHeadInner})
-                    .css({
-                'box-sizing': 'content-box',
-                width: scroll.sXInner || '100%'
-            })
-                    .append(
-                    headerClone
-                    .removeAttr('id')
-                    .css('margin-left', 0)
-                    .append(
-                    table.children('thead')
-                    )
-                    )
-                    )
-                    .append(captionSide === 'top' ? caption : null)
-                    )
-                    .append(
-                    $(_div, {'class': classes.sScrollBody})
-                    .css({
-                overflow: 'auto',
-                height: size(scrollY),
-                width: size(scrollX)
-            })
-                    .append(table)
-                    );
+                            $(_div, {'class': classes.sScrollBody})
+                            .css({
+                                overflow: 'auto',
+                                height: size(scrollY),
+                                width: size(scrollX)
+                            })
+                            .append(table)
+                            );
 
             if (footer) {
                 scroller.append(
                         $(_div, {'class': classes.sScrollFoot})
                         .css({
-                    overflow: 'hidden',
-                    border: 0,
-                    width: scrollX ? size(scrollX) : '100%'
-                })
+                            overflow: 'hidden',
+                            border: 0,
+                            width: scrollX ? size(scrollX) : '100%'
+                        })
                         .append(
-                        $(_div, {'class': classes.sScrollFootInner})
-                        .append(
-                        footerClone
-                        .removeAttr('id')
-                        .css('margin-left', 0)
-                        .append(
-                        table.children('tfoot')
-                        )
-                        )
-                        )
+                                $(_div, {'class': classes.sScrollFootInner})
+                                .append(
+                                        footerClone
+                                        .removeAttr('id')
+                                        .css('margin-left', 0)
+                                        .append(
+                                                table.children('tfoot')
+                                                )
+                                        )
+                                )
                         .append(captionSide === 'bottom' ? caption : null)
                         );
             }
@@ -2399,13 +2403,13 @@
                     headerContent = [],
                     idx, correction, sanityWidth,
                     zeroOut = function(nSizer) {
-                var style = nSizer.style;
-                style.paddingTop = "0";
-                style.paddingBottom = "0";
-                style.borderTopWidth = "0";
-                style.borderBottomWidth = "0";
-                style.height = 0;
-            };
+                        var style = nSizer.style;
+                        style.paddingTop = "0";
+                        style.paddingBottom = "0";
+                        style.borderTopWidth = "0";
+                        style.borderBottomWidth = "0";
+                        style.height = 0;
+                    };
             table.children('thead, tfoot').remove();
             headerCopy = header.clone().prependTo(table);
             headerTrgEls = header.find('tr'); // original header is in its own table
@@ -2816,15 +2820,15 @@
 
                 var outer = $('<div/>')
                         .css({
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: 200,
-                    height: 150,
-                    padding: 0,
-                    overflow: 'hidden',
-                    visibility: 'hidden'
-                })
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            width: 200,
+                            height: 150,
+                            padding: 0,
+                            overflow: 'hidden',
+                            visibility: 'hidden'
+                        })
                         .append(inner)
                         .appendTo('body');
 
@@ -2858,13 +2862,13 @@
                     fixedObj = $.isPlainObject(fixed),
                     nestedSort = [],
                     add = function(a) {
-                if (a.length && !$.isArray(a[0])) {
-                    nestedSort.push(a);
-                }
-                else {
-                    nestedSort.push.apply(nestedSort, a);
-                }
-            };
+                        if (a.length && !$.isArray(a[0])) {
+                            nestedSort.push(a);
+                        }
+                        else {
+                            nestedSort.push.apply(nestedSort, a);
+                        }
+                    };
             if ($.isArray(fixed)) {
                 add(fixed);
             }
@@ -3299,17 +3303,17 @@
         {
             $(n)
                     .bind('click.DT', oData, function(e) {
-                n.blur(); // Remove focus outline for mouse users
-                fn(e);
-            })
+                        n.blur(); // Remove focus outline for mouse users
+                        fn(e);
+                    })
                     .bind('keypress.DT', oData, function(e) {
-                if (e.which === 13) {
-                    fn(e);
-                }
-            })
+                        if (e.which === 13) {
+                            fn(e);
+                        }
+                    })
                     .bind('selectstart.DT', function() {
-                return false;
-            });
+                        return false;
+                    });
         }
         function _fnCallbackReg(oSettings, sStore, fn, sName)
         {
@@ -3400,8 +3404,8 @@
             {
                 return traditional ?
                         new _Api(
-                        _fnSettingsFromNode(this[ _ext.iApiIndex ])
-                        ) :
+                                _fnSettingsFromNode(this[ _ext.iApiIndex ])
+                                ) :
                         new _Api(this);
             };
 
@@ -4298,14 +4302,14 @@
                     j, jen,
                     struct, inner,
                     methodScoping = function(fn, struc) {
-                return function() {
-                    var ret = fn.apply(scope, arguments);
+                        return function() {
+                            var ret = fn.apply(scope, arguments);
 
-                    // Method extension
-                    _Api.extend(ret, ret, struc.methodExt);
-                    return ret;
-                };
-            };
+                            // Method extension
+                            _Api.extend(ret, ret, struc.methodExt);
+                            return ret;
+                        };
+                    };
 
             for (i = 0, ien = ext.length; i < ien; i++) {
                 struct = ext[i];
@@ -4420,10 +4424,10 @@
             return $(nodes)
                     .filter(selector)
                     .map(function(i) {
-                // Need to translate back from the table node to the settings
-                var idx = $.inArray(this, nodes);
-                return a[ idx ];
-            })
+                        // Need to translate back from the table node to the settings
+                        var idx = $.inArray(this, nodes);
+                        return a[ idx ];
+                    })
                     .toArray();
         };
 
@@ -4677,8 +4681,8 @@
                         search == 'applied' ?
                         displayFiltered.slice() : // applied search
                         $.map(displayMaster, function(el, i) { // removed search
-                    return $.inArray(el, displayFiltered) === -1 ? el : null;
-                });
+                            return $.inArray(el, displayFiltered) === -1 ? el : null;
+                        });
             }
             else if (order == 'index' || order == 'original') {
                 for (i = 0, ien = settings.aoData.length; i < ien; i++) {
@@ -4729,8 +4733,8 @@
                 return $(nodes)
                         .filter(sel)
                         .map(function() {
-                    return this._DT_RowIndex;
-                })
+                            return this._DT_RowIndex;
+                        })
                         .toArray();
             });
         };
@@ -5046,8 +5050,8 @@
                         return $(nodes)
                                 .filter(s)
                                 .map(function() {
-                            return $.inArray(this, nodes);
-                        })
+                                    return $.inArray(this, nodes);
+                                })
                                 .toArray();
                     }
                 }
@@ -6243,10 +6247,10 @@
 
                         cell
                                 .removeClass(
-                                column.sSortingClass + ' ' + classes.sSortAsc + ' ' + classes.sSortDesc
-                                )
+                                        column.sSortingClass + ' ' + classes.sSortAsc + ' ' + classes.sSortDesc
+                                        )
                                 .addClass(columns[ colIdx ] == 'asc' ? classes.sSortAsc : columns[ colIdx ] == 'desc' ? classes.sSortDesc : column.sSortingClass
-                                );
+                                        );
                     });
                 },
                 jqueryui: function(settings, cell, column, classes) {
@@ -6256,23 +6260,23 @@
                             .addClass(classes.sSortJUIWrapper)
                             .append(cell.contents())
                             .append($('<span/>')
-                            .addClass(classes.sSortIcon + ' ' + column.sSortingClassJUI)
-                            )
+                                    .addClass(classes.sSortIcon + ' ' + column.sSortingClassJUI)
+                                    )
                             .appendTo(cell);
 
                     $(settings.nTable).on('order.dt', function(e, settings, sorting, columns) {
                         cell
                                 .removeClass(classes.sSortAsc + " " + classes.sSortDesc)
                                 .addClass(columns[ colIdx ] == 'asc' ? classes.sSortAsc : columns[ colIdx ] == 'desc' ? classes.sSortDesc : column.sSortingClass
-                                );
+                                        );
 
                         cell
                                 .find('span')
                                 .removeClass(
-                                classes.sSortJUIAsc + " " + classes.sSortJUIDesc + " " + classes.sSortJUI + " " + classes.sSortJUIAscAllowed + " " + classes.sSortJUIDescAllowed
-                                )
+                                        classes.sSortJUIAsc + " " + classes.sSortJUIDesc + " " + classes.sSortJUI + " " + classes.sSortJUIAscAllowed + " " + classes.sSortJUIDescAllowed
+                                        )
                                 .addClass(columns[ colIdx ] == 'asc' ? classes.sSortJUIAsc : columns[ colIdx ] == 'desc' ? classes.sSortJUIDesc : column.sSortingClassJUI
-                                );
+                                        );
                     });
                 }
             }
