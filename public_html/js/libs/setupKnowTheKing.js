@@ -1,22 +1,23 @@
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
+ * chameera.lakshitha212@gmail.com
  */
-function checkPaginate() {
-    jQuery('#e_paginate').hide();
-    jQuery('#e_info').hide();
+function checkPaginate(tblId) {
+    jQuery('#'+tblId+'_paginate').hide();
+    jQuery('#'+tblId+'_info').hide();
     jQuery('#comboId').change(function() {
         if (jQuery('#comboId').val() == 0) {
-            jQuery('#e_paginate').hide();
-            jQuery('#e_info').hide();
+            jQuery('#'+tblId+'_paginate').hide();
+            jQuery('#'+tblId+'_info').hide();
         } else {
-            jQuery('#e_paginate').show();
-            jQuery('#e_info').show();
+            jQuery('#'+tblId+'_paginate').show();
+            jQuery('#'+tblId+'_info').show();
         }
     });
 }
 function setupDataTableSettings(searchableText, paginateDiv, maxLength, tblId, printId, excelId) {
-    checkPaginate();
+    checkPaginate(tblId);
     if (excelId == false) {
         $('.excelClz').hide();
     }
