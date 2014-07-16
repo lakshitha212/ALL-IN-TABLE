@@ -4,15 +4,15 @@
  * chameera.lakshitha212@gmail.com
  */
 function checkPaginate(tblId) {
-    jQuery('#'+tblId+'_paginate').hide();
-    jQuery('#'+tblId+'_info').hide();
+    jQuery('#' + tblId + '_paginate').hide();
+    jQuery('#' + tblId + '_info').hide();
     jQuery('#comboId').change(function() {
         if (jQuery('#comboId').val() == 0) {
-            jQuery('#'+tblId+'_paginate').hide();
-            jQuery('#'+tblId+'_info').hide();
+            jQuery('#' + tblId + '_paginate').hide();
+            jQuery('#' + tblId + '_info').hide();
         } else {
-            jQuery('#'+tblId+'_paginate').show();
-            jQuery('#'+tblId+'_info').show();
+            jQuery('#' + tblId + '_paginate').show();
+            jQuery('#' + tblId + '_info').show();
         }
     });
 }
@@ -49,9 +49,23 @@ function setPrint(tableId) {
     w.close();
 
 }
-function setExcell(table_id) {
-    var page = '<html><table border="1" style="border-spacing:0">' + $('#' + table_id).html() + '</table></html>';
-    window.open('data:application/vnd.ms-excel,' + encodeURIComponent(page));
-    e.preventDefault();
+var setExcell = function(table_id) {
+    var uri = '';
+    if (navigator.appVersion.indexOf("Win") != -1) {
+        uri = 'data:application/vnd.ms-excel;base64,';
+    }
+    if (navigator.appVersion.indexOf("Linux") != -1) {
+        uri = 'data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,';
+    }
+    var ele = document.getElementById(table_id);
+    if (ele.nodeName == "TABLE") {
+        var template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>Worksheet</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>' + document.getElementById(table_id).innerHTML + '</table></body></html>',
+                a = document.createElement('a');
+        a.href = uri + window.btoa(unescape(encodeURIComponent(template)));
+        a.setAttribute('download', 'a.xlsx');
+        a.click();
+    } else {
+        alert('Not a table');
+    }
 }
 
